@@ -1,26 +1,14 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import CustomerTable from "./components/CustomerTable";
 
-function App() {
+const Customer = () => {
+  const [customers , setCustomers] = React.useState([])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+        { customers ? <CustomerTable customers={customers} setCustomers={()=>{alert('hello form set customer')}}/> : "no customer found ! "}
+          <p>hello from customer</p>
+      </div>
   );
-}
+};
 
-export default App;
+export default Customer;
