@@ -1,3 +1,6 @@
+body{
+  direction: rtl;
+}
 .modalContainer{
   position:absolute;
   top:50%;

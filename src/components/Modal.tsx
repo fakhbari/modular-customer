@@ -45,7 +45,7 @@ export default function CustomerModal(props:Iprops) {
       setFamily(props.modalData.family)
       setNationalCode(props.modalData.nationalCode)
     }
-      },[props])
+  },[props])
 
   const onSubmitData = () =>{
     props.modalData.onSubmit({name,family,nationalCode})
@@ -53,43 +53,43 @@ export default function CustomerModal(props:Iprops) {
   }
 
   return (
-    <Modal
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-    >
-      <Box className={styles.modalContainer}>
-        <Typography className={styles['m-b-10']}> Customer Information : </Typography>
-        <TextField
-          required
-          id="name"
-          label="Name"
-          size="small"
-          margin="dense"
-          value={name}
-          onChange={(event)=>{setName(event.target.value)}}
-        />
-        <TextField
-          required
-          id="family"
-          label="Family"
-          size="small"
-          margin="dense"
-          value={family}
-          onChange={(event)=>{setFamily(event.target.value)}}
-        />
-        <TextField
-          required
-          id="nationalCode"
-          label="National Code"
-          size="small"
-          margin="dense"
-          value={nationalCode}
-          onChange={(event)=>{setNationalCode(event.target.value)}}
-        />
-        <Button variant="contained" fullWidth={true} onClick={onSubmitData}>Submit</Button>
-      </Box>
-    </Modal>
+      <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+      >
+        <Box className={styles.modalContainer} >
+          <Typography className={styles['m-b-10']}> مشخصات مشتری : </Typography>
+          <TextField
+              required
+              id="name"
+              label="نام"
+              size="small"
+              margin="dense"
+              value={name}
+              onChange={(event)=>{setName(event.target.value)}}
+          />
+          <TextField
+              required
+              id="family"
+              label="نام خانوادگی"
+              size="small"
+              margin="dense"
+              value={family}
+              onChange={(event)=>{setFamily(event.target.value)}}
+          />
+          <TextField
+              required
+              id="nationalCode"
+              label="کد ملی"
+              size="small"
+              margin="dense"
+              value={nationalCode}
+              onChange={(event)=>{setNationalCode(event.target.value)}}
+          />
+          <Button variant="contained" fullWidth={true} onClick={onSubmitData}>ثبت</Button>
+        </Box>
+      </Modal>
   );
 }

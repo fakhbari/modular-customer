@@ -1,14 +1,15 @@
-import React, {useState} from 'react';
-import CustomerTable from "./components/CustomerTable";
+import React from 'react';
+import "./App.module.css";
+import {CustomerDataProvider} from './dataContext';
+import Container from './container';
+
 
 const Customer = () => {
-  const [customers , setCustomers] = React.useState([])
-  return (
-      <div>
-        { customers ? <CustomerTable customers={customers} setCustomers={()=>{alert('hello form set customer')}}/> : "no customer found ! "}
-          <p>hello from customer</p>
-      </div>
-  );
+    return (
+        <CustomerDataProvider>
+            <Container />
+        </CustomerDataProvider>
+    );
 };
 
 export default Customer;

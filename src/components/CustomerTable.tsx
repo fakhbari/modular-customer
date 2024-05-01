@@ -39,31 +39,31 @@ const headCells: readonly HeadCell[] = [
     id: "customerNumber",
     numeric: true,
     disablePadding: false,
-    label: "Customer Number",
+    label: "شماره مشتری",
   },
   {
     id: "name",
     numeric: false,
     disablePadding: true,
-    label: "Name",
+    label: "نام",
   },
   {
     id: "family",
     numeric: true,
     disablePadding: false,
-    label: "Family",
+    label: "نام خانوادگی",
   },
   {
     id: "nationalCode",
     numeric: true,
     disablePadding: false,
-    label: "national Code",
+    label: "کد ملی",
   },
   {
     id: "operation",
     numeric: true,
     disablePadding: false,
-    label: "Operation",
+    label: "عملیات",
   },
 ];
 
@@ -76,30 +76,30 @@ interface EnhancedTableProps {
 function EnhancedTableHead(props: EnhancedTableProps) {
   const {onSelectAllClick, numSelected, rowCount} = props;
   return (
-    <TableHead>
-      <TableRow>
-        <TableCell padding="checkbox">
-          <Checkbox
-            color="primary"
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
-            inputProps={{
-              "aria-label": "select all desserts",
-            }}
-          />
-        </TableCell>
-        {headCells.map((headCell) => (
-          <TableCell
-            key={headCell.id}
-            align="center"
-            padding={headCell.disablePadding ? "none" : "normal"}
-          >
-            {headCell.label}
+      <TableHead>
+        <TableRow>
+          <TableCell padding="checkbox">
+            <Checkbox
+                color="primary"
+                indeterminate={numSelected > 0 && numSelected < rowCount}
+                checked={rowCount > 0 && numSelected === rowCount}
+                onChange={onSelectAllClick}
+                inputProps={{
+                  "aria-label": "select all desserts",
+                }}
+            />
           </TableCell>
-        ))}
-      </TableRow>
-    </TableHead>
+          {headCells.map((headCell) => (
+              <TableCell
+                  key={headCell.id}
+                  align="center"
+                  padding={headCell.disablePadding ? "none" : "normal"}
+              >
+                {headCell.label}
+              </TableCell>
+          ))}
+        </TableRow>
+      </TableHead>
   );
 }
 
@@ -120,60 +120,59 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
   }
 
   return (
-    <>
+      <>
 
-      <Toolbar
-        sx={{
-          pl: {sm: 2},
-          pr: {xs: 1, sm: 1},
-          ...(numSelected > 0 && {
-            bgcolor: (theme) =>
-              alpha(
-                theme.palette.primary.main,
-                theme.palette.action.activatedOpacity
-              ),
-          }),
-        }}
-      >
-        {numSelected > 0 ? (
-          <Typography
-            sx={{flex: "1 1 100%"}}
-            color="inherit"
-            variant="subtitle1"
-            component="div"
-          >
-            {numSelected} selected
-          </Typography>
-        ) : (
-          <Typography
-            sx={{flex: "1 1 100%"}}
-            variant="h6"
-            id="tableTitle"
-            component="div"
-          >
-            Customers
-          </Typography>
-        )}
-        {numSelected > 0 ? (
-          <Tooltip title="Delete">
-            <IconButton
-                onClick={() => {
-                  handleDeleteCustomer(selectedItem)
-                }}
-            >
-              <DeleteIcon
-              />
-            </IconButton>
-          </Tooltip>
-        ) : (
-          <Tooltip title="Add New Customer">
-            <IconButton onClick={()=>{props.onAddItem()}}>
-              <AddIcon/>
-            </IconButton>
-          </Tooltip>
-        )}
-      </Toolbar>
-    </>
+        <Toolbar
+            sx={{
+              pl: {sm: 2},
+              pr: {xs: 1, sm: 1},
+              ...(numSelected > 0 && {
+                bgcolor: (theme) =>
+                    alpha(
+                        theme.palette.primary.main,
+                        theme.palette.action.activatedOpacity
+                    ),
+              }),
+            }}
+        >
+          {numSelected > 0 ? (
+              <Typography
+                  sx={{flex: "1 1 100%"}}
+                  color="inherit"
+                  variant="subtitle1"
+                  component="div"
+              >
+                {numSelected} selected
+              </Typography>
+          ) : (
+              <Typography
+                  sx={{flex: "1 1 100%"}}
+                  variant="h6"
+                  id="tableTitle"
+                  component="div"
+              >
+                مشتریان
+              </Typography>
+          )}
+          {numSelected > 0 ? (
+              <Tooltip title="Delete">
+                <IconButton>
+                  <DeleteIcon
+                      onClick={() => {
+                        handleDeleteCustomer(selectedItem)
+                      }}
+                  />
+                </IconButton>
+              </Tooltip>
+          ) : (
+              <Tooltip title="Add New Customer">
+                <IconButton>
+                  <AddIcon onClick={()=>{props.onAddItem()}}/>
+                </IconButton>
+              </Tooltip>
+          )}
+        </Toolbar>
+      </>
   );
 }
 
@@ -210,8 +209,8 @@ export default function CustomerTable(props:{customers:customerType[],setCustome
       newSelected = newSelected.concat(selected.slice(0, -1));
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
+          selected.slice(0, selectedIndex),
+          selected.slice(selectedIndex + 1)
       );
     }
     setSelected(newSelected);
@@ -243,91 +242,91 @@ export default function CustomerTable(props:{customers:customerType[],setCustome
     setSelected([])
   }
   return (
-    <>
-      {/*sample of publishing an event*/}
-      {/*<button onClick={()=>{*/}
-      {/*  (window as any).publish('mife-a', {*/}
-      {/*    type: 'show_dialog',*/}
-      {/*    name: 'close_file'*/}
-      {/*  });*/}
-      {/*}}>click me </button>*/}
-      <Box sx={{width: "100%"}}>
-        <Paper sx={{width: "100%", mb: 2}}>
-          <EnhancedTableToolbar
-            numSelected={selected.length}
-            selectedItem={selected}
-            onAddItem={()=>{setModal({isOpen: true,data: {name:'',family:'',nationalCode:'',onSubmit:submitModalAddHandler}})}}
-            onDeleteItem={handleDeleteItem}
-          />
-          <TableContainer>
-            <Table sx={{minWidth: 750}} aria-labelledby="tableTitle">
-              <EnhancedTableHead
+      <>
+        {/*sample of publishing an event*/}
+        {/*<button onClick={()=>{*/}
+        {/*  (window as any).publish('mife-a', {*/}
+        {/*    type: 'show_dialog',*/}
+        {/*    name: 'close_file'*/}
+        {/*  });*/}
+        {/*}}>click me </button>*/}
+        <Box sx={{width: "100%"}}>
+          <Paper sx={{width: "100%", mb: 2}}>
+            <EnhancedTableToolbar
                 numSelected={selected.length}
-                onSelectAllClick={handleSelectAllClick}
-                rowCount={props.customers.length}
-              />
-              <TableBody>
-                {props.customers && props.customers.map((customer, index) => {
-                  const isItemSelected = isSelected(customer.customerNumber);
-                  const labelId = `enhanced-table-checkbox-${index}`;
+                selectedItem={selected}
+                onAddItem={()=>{setModal({isOpen: true,data: {name:'',family:'',nationalCode:'',onSubmit:submitModalAddHandler}})}}
+                onDeleteItem={handleDeleteItem}
+            />
+            <TableContainer>
+              <Table sx={{minWidth: 750}} aria-labelledby="tableTitle">
+                <EnhancedTableHead
+                    numSelected={selected.length}
+                    onSelectAllClick={handleSelectAllClick}
+                    rowCount={props.customers.length}
+                />
+                <TableBody>
+                  {props.customers && props.customers.map((customer, index) => {
+                    const isItemSelected = isSelected(customer.customerNumber);
+                    const labelId = `enhanced-table-checkbox-${index}`;
 
-                  return (
-                    <TableRow
-                      hover
-                      role="checkbox"
-                      aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      key={customer.customerNumber}
-                      selected={isItemSelected}
-                      sx={{cursor: "pointer"}}
-                    >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          color="primary"
-                          onClick={(event) => handleClick(event, customer.customerNumber)}
-                          checked={isItemSelected}
-                          inputProps={{
-                            "aria-labelledby": labelId,
-                          }}
-                        />
-                      </TableCell>
-                      <TableCell
-                        component="th"
-                        id={labelId}
-                        scope="row"
-                        padding="none"
-                        align="center"
-                      >
-                        {customer.customerNumber}
-                      </TableCell>
-                      <TableCell align="center">{customer.name}</TableCell>
-                      <TableCell align="center">{customer.family}</TableCell>
-                      <TableCell align="center">{customer.nationalCode}</TableCell>
-                      <TableCell align="center">
-                        <EditIcon onClick={() => {
-                          setModal(
-                            {
-                              isOpen: true,
-                              data: {
-                                name:customer.name,
-                                family:customer.family,
-                                nationalCode:customer.nationalCode,
-                                onSubmit:(formData)=>{submitModalEditHandler(customer.customerNumber,formData)},
-                              }
+                    return (
+                        <TableRow
+                            hover
+                            role="checkbox"
+                            aria-checked={isItemSelected}
+                            tabIndex={-1}
+                            key={customer.customerNumber}
+                            selected={isItemSelected}
+                            sx={{cursor: "pointer"}}
+                        >
+                          <TableCell padding="checkbox">
+                            <Checkbox
+                                color="primary"
+                                onClick={(event) => handleClick(event, customer.customerNumber)}
+                                checked={isItemSelected}
+                                inputProps={{
+                                  "aria-labelledby": labelId,
+                                }}
+                            />
+                          </TableCell>
+                          <TableCell
+                              component="th"
+                              id={labelId}
+                              scope="row"
+                              padding="none"
+                              align="center"
+                          >
+                            {customer.customerNumber}
+                          </TableCell>
+                          <TableCell align="center">{customer.name}</TableCell>
+                          <TableCell align="center">{customer.family}</TableCell>
+                          <TableCell align="center">{customer.nationalCode}</TableCell>
+                          <TableCell align="center">
+                            <EditIcon onClick={() => {
+                              setModal(
+                                  {
+                                    isOpen: true,
+                                    data: {
+                                      name:customer.name,
+                                      family:customer.family,
+                                      nationalCode:customer.nationalCode,
+                                      onSubmit:(formData)=>{submitModalEditHandler(customer.customerNumber,formData)},
+                                    }
+                                  }
+                              )
                             }
-                          )
-                        }
-                        }/>
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Paper>
-      </Box>
-      <CustomerModal openModal={modal.isOpen} modalData={modal.data} closeModal={()=>{setModal({isOpen: false,data: {name:'',family:'',nationalCode:'',onSubmit:()=>{}}})}} />
-    </>
+                            }/>
+                          </TableCell>
+                        </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Paper>
+        </Box>
+        <CustomerModal openModal={modal.isOpen} modalData={modal.data} closeModal={()=>{setModal({isOpen: false,data: {name:'',family:'',nationalCode:'',onSubmit:()=>{}}})}} />
+      </>
   );
 }
