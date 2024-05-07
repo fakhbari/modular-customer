@@ -18,9 +18,14 @@ module.exports = {
                     library: { type: "var", name: "customer" },
                     filename: 'remoteEntry.js',
                     exposes: {
-                        './Module': './src/App'
+                        './Module': './src/remote-entry.ts',
+                        './Services':'./src/services.js'
                     },
-                    shared:['react']
+                    shared:[
+                        {'react':{singleton:true,strictVersion:true},
+                            'react-dom':{singleton:true,strictVersion:true},
+                            '@mui/material':{singleton:true,strictVersion:true},
+                        }]
                 })
             ]
             return webpackConfig;

@@ -1,7 +1,6 @@
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { createTheme, ThemeProvider } from '@mui/material';
-
 import App from './App';
 
 const theme = createTheme({
