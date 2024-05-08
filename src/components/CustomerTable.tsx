@@ -166,8 +166,8 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
               </Tooltip>
           ) : (
               <Tooltip title="Add New Customer">
-                <IconButton>
-                  <AddIcon onClick={()=>{props.onAddItem()}}/>
+                <IconButton onClick={()=>{props.onAddItem()}}>
+                  <AddIcon/>
                 </IconButton>
               </Tooltip>
           )}
